@@ -36,10 +36,20 @@ export const TaskProvider = ({children}: TaskProviderProps) => {
             creatAt: new Date().toISOString(),
         };
         setTasks((prev) => [...prev, newTask]);
-    }
+    };
+
+    //Editando uma task
+    const updateTask= (id: string, update: Partial<Omit<Task, "id" | "createAt">>) => {
+        setTasks((prev) => 
+            prev.map((task) => 
+                task.id === id? {...task, ...update} : task
+            )
+        )
+    };
+
 
     return (
-        <TaskContext.Provider value={{tasks, createTask}}>
+        <TaskContext.Provider value={{tasks, createTask, updateTask}}>
             {children}
         </TaskContext.Provider>
     );
