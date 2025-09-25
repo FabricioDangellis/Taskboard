@@ -5,4 +5,5 @@ export default interface ITaskContext {
     createTask: (titulo: string, descricao: string, prioridade: Task["prioridade"]) => void;
     updateTask: (id: string, update: Partial<Omit<Task, "id" | "createAt">>) => void;
     deleteTask: (id:string) => void;
+    updateStatusTask: (id: string, newStatus: "To Do" | "Doing" | "Done") => void,
 }

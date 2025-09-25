@@ -56,9 +56,18 @@ export const TaskProvider = ({children}: TaskProviderProps) => {
         )
     };
 
+    //Atualizando o status de uma task
+    const updateStatusTask= (id: string, newStatus: "To Do" | "Doing" | "Done") => {
+        setTasks((prev) => 
+            prev.map((task) => 
+                task.id === id ? {...task, status: newStatus}: task
+            )
+        )
+    };
+
 
     return (
-        <TaskContext.Provider value={{tasks, createTask, updateTask, deleteTask}}>
+        <TaskContext.Provider value={{tasks, createTask, updateTask, deleteTask, updateStatusTask}}>
             {children}
         </TaskContext.Provider>
     );
