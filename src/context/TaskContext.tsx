@@ -1,6 +1,7 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import type { Task } from "../types/Task";
 import type ITaskContext from "../interfaces/ITaskContext";
+import { v4 as uuidv4 } from "uuid";
 
 const TaskContext = createContext<ITaskContext | undefined>(undefined);
 
@@ -11,8 +12,34 @@ type TaskProviderProps = {
 export const TaskProvider = ({children}: TaskProviderProps) => {
     const [tasks, setTasks] = useState<Task[]>([]);
 
+    //Carregando as taks do localstorage
+    useEffect(() => {
+        const stored = localStorage.getItem("tasks");
+        if(stored) {
+            setTasks(JSON.parse(stored));
+        }
+    }, [])
+
+    //Salvando as tasks no localstorage sempre que houver alguma mudança
+    useEffect(() => {
+        localStorage.setItem("tasks",JSON.stringify(tasks));
+    }, [tasks])
+
+    //Criando uma nova task
+    const createTask = (titulo: string, descricao: string, prioridade: Task["prioridade"]) => {
+        const newTask: Task = {
+            id: uuidv4(),
+            titulo,
+            descricao,
+            prioridade,
+            status: "To Do",
+            creatAt: new Date().toISOString(),
+        };
+        setTasks((prev) => [...prev, newTask]);
+    }
+
     return (
-        <TaskContext.Provider value={{tasks}}>
+        <TaskContext.Provider value={{tasks, createTask}}>
             {children}
         </TaskContext.Provider>
     );
