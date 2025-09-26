@@ -33,7 +33,7 @@ export const TaskProvider = ({children}: TaskProviderProps) => {
             descricao,
             prioridade,
             status: "To Do",
-            creatAt: new Date().toISOString(),
+            createAt: new Date().toISOString(),
         };
         setTasks((prev) => [...prev, newTask]);
     };
