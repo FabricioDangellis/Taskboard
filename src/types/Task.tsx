@@ -4,5 +4,5 @@ export type Task = {
     descricao: string;
     prioridade : "Baixa" | "Media" | "Alta";
     status: "To Do" | "Doing" | "Done";
-    creatAt: string;
+    createAt: string;
 }

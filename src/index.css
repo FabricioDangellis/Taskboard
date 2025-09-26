@@ -1,2 +1,5 @@
 @import "tailwindcss";
 
+@theme {
+    --color-country-green: #778C4A;
+}
