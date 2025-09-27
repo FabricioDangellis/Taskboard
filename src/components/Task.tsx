@@ -26,7 +26,6 @@ export default function Task({ task }: TaskProps) {
 
   return (
     <div className="p-4 bg-white rounded-xl shadow-md flex items-center gap-4 border border-gray-200">
-      {/* Checkbox */}
       <input
         type="checkbox"
         checked={task.status === "Done"}
@@ -34,38 +33,42 @@ export default function Task({ task }: TaskProps) {
         className="h-5 w-5 cursor-pointer accent-green-600"
       />
 
-      {/* Conteúdo principal */}
       <div className="flex-1">
-        <h3 className="font-bold text-lg">{task.titulo}</h3>
-        <p className="text-gray-600 text-sm">{task.descricao}</p>
+        <h3 className={`font-bold text-base sm:text-lg ${
+            task.status === "Done" ? "line-through text-gray-400" : ""
+          }`}>
+            {task.titulo}
+        </h3>
+        <p className={`text-sm sm:text-base text-gray-700 ${
+            task.status === "Done" ? "line-through text-gray-400" : ""
+          }`}>
+            {task.descricao}
+        </p>
       </div>
 
-      {/* Prioridade */}
       <span
-        className={`px-2 py-1 text-xs rounded-full ${
-          task.prioridade === "Alta"
-            ? "bg-red-200 text-red-800"
+        className={`w-15 text-center text-off-white px-2 py-1 text-xs sm:text-sm rounded-full whitespace-nowrap ${task.prioridade === "Alta"
+            ? "bg-apple"
             : task.prioridade === "Media"
-            ? "bg-yellow-200 text-yellow-800"
-            : "bg-green-200 text-green-800"
-        }`}
+              ? "bg-golden "
+              : "bg-country-green"
+          }`}
       >
         {task.prioridade}
       </span>
 
-      {/* Ações */}
-      <div className="flex flex-col gap-2 items-center">
+      <div className="flex gap-2">
         <Link to={`/task/${task.id}`} title="Editar tarefa">
-          <Pencil className="w-6 h-6 text-blue-600 hover:text-blue-800" />
+          <Pencil className="w-6 sm:w-8 hover:text-blue-800" />
         </Link>
 
         <button
           type="button"
           onClick={handleDelete}
           title="Excluir tarefa"
-          className="text-red-600 hover:text-red-800"
+          className=" hover:text-red-800"
         >
-          <Trash2 className="w-6 h-6" />
+          <Trash2 className="w-6 sm:w-8" />
         </button>
       </div>
     </div>
