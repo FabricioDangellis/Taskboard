@@ -3,11 +3,13 @@ import { useParams, useNavigate, Link } from "react-router-dom";
 import { useState } from "react";
 import { useTask } from "../../context/TaskContext";
 import { List } from "lucide-react";
+import ConfirmModal from "../../components/ConfirmModal";
 
 export default function TaskDetail() {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
   const { tasks, updateTask, updateStatusTask, deleteTask } = useTask();
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   // Busca a task pelo id
   const task = tasks.find((t) => t.id === id);
@@ -40,6 +42,7 @@ export default function TaskDetail() {
 
   const handleDelete = () => {
     deleteTask(task.id);
+    setIsModalOpen(false);
     navigate("/");
   };
 
@@ -123,9 +126,9 @@ export default function TaskDetail() {
             <div className="flex flex-col gap-3 mt-7">
               <div className="flex gap-3">
                 <button
-                  onClick={handleDelete}
+                  onClick={() => setIsModalOpen(true)}
                   className="w-1/2 px-4 py-2 text-center text-apple rounded-xl border border-apple hover:bg-apple hover:text-white transition delay-90 duration-200"                >
-                  Deletar
+                  Excluir
                 </button>
 
                 <Link to="/" className="w-1/2 px-4 py-2 text-center text-gray-700 rounded-xl border border-gray-700 hover:bg-gray-700 hover:text-white transition delay-90 duration-200">
@@ -152,6 +155,13 @@ export default function TaskDetail() {
         2025 - Desenvolvido por <Link to="https://github.com/FabricioDangellis" target="_blank" rel="noopener noreferrer">@Fabrício D’angellis</Link>
       </footer>
 
+      <ConfirmModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        onConfirm={handleDelete}
+        title="Confirmar exclusão"
+        message={`Deseja realmente excluir a tarefa "${task.titulo}"?`}
+      />
     </div>
   );
 }
