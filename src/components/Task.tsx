@@ -26,7 +26,6 @@ export default function Task({ task }: TaskProps) {
 
   return (
     <div className="p-4 bg-white rounded-xl shadow-md flex items-center gap-4 border border-gray-200">
-      {/* Checkbox */}
       <input
         type="checkbox"
         checked={task.status === "Done"}
@@ -34,13 +33,11 @@ export default function Task({ task }: TaskProps) {
         className="h-5 w-5 cursor-pointer accent-green-600"
       />
 
-      {/* Conteúdo principal */}
       <div className="flex-1">
         <h3 className="font-bold text-lg">{task.titulo}</h3>
         <p className="text-gray-600 text-sm">{task.descricao}</p>
       </div>
 
-      {/* Prioridade */}
       <span
         className={`px-2 py-1 text-xs rounded-full ${
           task.prioridade === "Alta"
@@ -53,7 +50,6 @@ export default function Task({ task }: TaskProps) {
         {task.prioridade}
       </span>
 
-      {/* Ações */}
       <div className="flex flex-col gap-2 items-center">
         <Link to={`/task/${task.id}`} title="Editar tarefa">
           <Pencil className="w-6 h-6 text-blue-600 hover:text-blue-800" />

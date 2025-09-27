@@ -6,6 +6,11 @@ import { Plus } from "lucide-react";
 export default function Home() {
   const { tasks } = useTask();
 
+  const priorityTasks = [...tasks].sort((a, b) => {
+    const priorityOrder = { Alta: 1, Media: 2, Baixa: 3 };
+    return priorityOrder[a.prioridade] - priorityOrder[b.prioridade];
+  });
+
   return (
     <div className="w-full min-h-screen flex justify-center items-center bg-gray-100">
       <div className="w-2/3 min-w-[360px] bg-white shadow-lg rounded-xl overflow-hidden">
@@ -25,7 +30,7 @@ export default function Home() {
             </p>
           ) : (
             <div className="space-y-4">
-              {tasks.map((task) => (
+              {priorityTasks.map((task) => (
                 <Task key={task.id} task={task} />
               ))}
             </div>
