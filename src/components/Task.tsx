@@ -34,18 +34,25 @@ export default function Task({ task }: TaskProps) {
       />
 
       <div className="flex-1">
-        <h3 className="font-bold text-lg">{task.titulo}</h3>
-        <p className="text-gray-600 text-sm">{task.descricao}</p>
+        <h3 className={`font-bold text-lg ${
+            task.status === "Done" ? "line-through text-gray-400" : ""
+          }`}>
+            {task.titulo}
+        </h3>
+        <p className={`text-gray-600 text-sm ${
+            task.status === "Done" ? "line-through text-gray-400" : ""
+          }`}>
+            {task.descricao}
+        </p>
       </div>
 
       <span
-        className={`px-2 py-1 text-xs rounded-full ${
-          task.prioridade === "Alta"
+        className={`px-2 py-1 text-xs rounded-full ${task.prioridade === "Alta"
             ? "bg-red-200 text-red-800"
             : task.prioridade === "Media"
-            ? "bg-yellow-200 text-yellow-800"
-            : "bg-green-200 text-green-800"
-        }`}
+              ? "bg-yellow-200 text-yellow-800"
+              : "bg-green-200 text-green-800"
+          }`}
       >
         {task.prioridade}
       </span>
