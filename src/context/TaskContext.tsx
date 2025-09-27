@@ -10,15 +10,16 @@ type TaskProviderProps = {
 }
 
 export const TaskProvider = ({children}: TaskProviderProps) => {
-    const [tasks, setTasks] = useState<Task[]>([]);
-
-    //Carregando as taks do localstorage
-    useEffect(() => {
-        const stored = localStorage.getItem("tasks");
-        if(stored) {
-            setTasks(JSON.parse(stored));
+    const [tasks, setTasks] = useState<Task[]>(() => {
+        try {
+            const stored = localStorage.getItem("tasks");
+            return stored ? JSON.parse(stored) : [];
+        } catch {
+            return [];
         }
-    }, [])
+    });
+
+    
 
     //Salvando as tasks no localstorage sempre que houver alguma mudança
     useEffect(() => {
@@ -33,7 +34,7 @@ export const TaskProvider = ({children}: TaskProviderProps) => {
             descricao,
             prioridade,
             status: "To Do",
-            createAt: new Date().toISOString(),
+            createdAt: new Date().toISOString(),
         };
         setTasks((prev) => [...prev, newTask]);
     };
