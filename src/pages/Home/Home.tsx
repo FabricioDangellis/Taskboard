@@ -23,9 +23,9 @@ export default function Home() {
 
         <div className="w-2/3 min-w-[360px] relative bg-white shadow-lg rounded-xl overflow-hidden flex flex-col">
 
-          <header className="w-full bg-sky-blue py-6 flex justify-center items-center">
-            <h1 className="font-bold text-3xl text-white">TaskBoard</h1>
-          </header>
+          <div className="w-full bg-sky-blue py-6 flex justify-center items-center">
+            <h1 className="font-bold text-3xl text-white">My Board</h1>
+          </div>
 
           <section className="p-6 pb-28">
             <div className="mb-5">

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useTask } from "../../context/TaskContext";
+import { List } from "lucide-react";
 
 export default function NewTask() {
   const { createTask } = useTask();
@@ -29,14 +30,22 @@ export default function NewTask() {
   }
 
   return (
-    <div className="w-full min-h-screen flex items-center justify-center bg-gray-100 p-4">
-      <div className="w-full max-w-lg bg-white rounded-xl shadow-md overflow-hidden">
-        <header className="bg-country-green px-6 py-5">
-          <h1 className="text-white text-2xl font-bold">Cadastrar Nova Task</h1>
-        </header>
+    <div className="w-full min-h-screen relative py-6 px-4 bg-off-white">
 
-        <main className="p-6">
-          <form onSubmit={handleSubmit} className="space-y-4">
+      <header className="h-1/6 flex items-center gap-2 mb-6">
+        <List className="w-8 h-8 text-sky-blue" />
+        <h1 className="font-bold text-3xl text-gray-800">TaskBoard</h1>
+      </header>
+
+      <main className="flex justify-center mt-10 mb-10">
+
+        <div className="w-2/4 min-w-[360px] relative bg-white shadow-lg rounded-xl overflow-hidden flex flex-col">
+
+          <div className="w-full bg-sky-blue py-6 flex justify-center items-center">
+            <h1 className="font-bold text-3xl text-white">New Task</h1>
+          </div>
+
+          <form onSubmit={handleSubmit} className="space-y-4 p-6">
             <div>
               <label htmlFor="titulo" className="block text-sm font-medium mb-1">
                 Título <span className="text-red-500">*</span>
@@ -47,7 +56,7 @@ export default function NewTask() {
                 value={titulo}
                 onChange={(e) => setTitulo(e.target.value)}
                 className="w-full border rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
-                placeholder="Ex: Ajustar layout do dashboard"
+                placeholder="Título da tarefa"
                 required
                 aria-required
               />
@@ -82,20 +91,25 @@ export default function NewTask() {
               </select>
             </div>
 
-            <div className="flex gap-3 justify-end items-center mt-4">
-              <Link to="/" className="px-4 py-2 rounded border hover:bg-gray-50">
+            <div className="flex gap-3 justify-center items-center mt-4">
+              <Link to="/" className="w-1/2 px-4 py-2 text-center text-apple rounded-xl border border-apple hover:bg-apple hover:text-white transition delay-90 duration-200">
                 Cancelar
               </Link>
               <button
                 type="submit"
-                className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+                className="w-1/2 bg-sky-blue text-white px-4 py-2 rounded-xl hover:bg-sky-light-blue transition delay-90 duration-200"
               >
                 Salvar Task
               </button>
             </div>
           </form>
-        </main>
-      </div>
+        </div>
+      </main>
+
+      <footer className="absolute bottom-0 left-0 w-full my-4 mt-6 text-gray-500 text-sm text-center">
+        2025 - Desenvolvido por <Link to="https://github.com/FabricioDangellis" target="_blank" rel="noopener noreferrer">@Fabrício D’angellis</Link>
+      </footer>
+
     </div>
   );
 }
