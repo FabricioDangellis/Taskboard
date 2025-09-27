@@ -96,9 +96,7 @@ export default function NewTask() {
                 Cancelar
               </Link>
               <button
-                type="submit"
-                className="w-1/2 bg-sky-blue text-white px-4 py-2 rounded-xl hover:bg-sky-light-blue transition delay-90 duration-200"
-              >
+                type="submit" className="w-1/2 bg-sky-blue text-white px-4 py-2 rounded-xl hover:bg-sky-light-blue transition delay-90 duration-200">
                 Salvar Task
               </button>
             </div>

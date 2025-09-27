@@ -2,6 +2,8 @@ import { Link } from "react-router-dom";
 import type { Task as TaskType } from "../types/Task";
 import { Pencil, Trash2 } from "lucide-react";
 import { useTask } from "../context/TaskContext";
+import ConfirmModal from "./ConfirmModal";
+import { useState } from "react";
 
 type TaskProps = {
   task: TaskType;
@@ -9,6 +11,7 @@ type TaskProps = {
 
 export default function Task({ task }: TaskProps) {
   const { updateStatusTask, deleteTask } = useTask();
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleToggle = () => {
     if (task.status === "Done") {
@@ -19,9 +22,8 @@ export default function Task({ task }: TaskProps) {
   };
 
   const handleDelete = () => {
-    if (confirm("Deseja realmente excluir esta tarefa?")) {
-      deleteTask(task.id);
-    }
+    deleteTask(task.id);
+    setIsModalOpen(false);
   };
 
   return (
@@ -64,13 +66,21 @@ export default function Task({ task }: TaskProps) {
 
         <button
           type="button"
-          onClick={handleDelete}
+          onClick={() => setIsModalOpen(true)}
           title="Excluir tarefa"
           className=" hover:text-red-800"
         >
           <Trash2 className="w-6 sm:w-8" />
         </button>
       </div>
+
+      <ConfirmModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        onConfirm={handleDelete}
+        title="Confirmar exclusão"
+        message={`Deseja realmente excluir a tarefa "${task.titulo}"?`}
+      />
     </div>
   );
 }
