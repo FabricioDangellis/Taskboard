@@ -21,12 +21,11 @@ export default function NewTask() {
 
     createTask(titulo.trim(), descricao.trim(), prioridade);
 
-    // limpar campos e voltar para a lista
     setTitulo("");
     setDescricao("");
     setPrioridade("Baixa");
 
-    navigate("/"); // volta para a Home após criar
+    navigate("/");
   }
 
   return (
