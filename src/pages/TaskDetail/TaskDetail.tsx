@@ -1,4 +1,3 @@
-// src/pages/TaskDetail/index.tsx
 import { useParams, useNavigate, Link } from "react-router-dom";
 import { useState } from "react";
 import { useTask } from "../../context/TaskContext";
