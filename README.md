@@ -21,7 +21,9 @@ Este projeto se trata de um sistema simples para o gerenciamento de tarefas, des
 
 O **TaskBoard** é um projeto de gerenciamento de tarefas desenvolvido com **React** e **TypeScript**, que tem como objetivo oferecer uma interface simples, funcional e agradável para organização pessoal. 
 
-O sistema permite criar, editar e excluir tarefas de forma intuitiva, contando com o uso de modais personalizados e mensagens de feedback para garantir melhor experiência ao usuário. Além disso, o projeto foi estruturado com boas práticas de componentização e persistência de dados no LocalStorage, garantindo que as informações sejam salvas mesmo após o fechamento do navegador.
+O sistema permite criar, editar e excluir tarefas de forma intuitiva, contando com o uso de modais personalizados e mensagens de feedback para garantir melhor experiência ao usuário.
+
+A arquitetura foi pensada para manter uma separação clara de responsabilidades, usando componentes reutilizáveis e bem organizados. Foi decidido centralizar as regras de negócio em um contexto global, assim as operações relacionadas às tarefas ficam consistentes em toda a aplicação. Além disso, priorizei a responsividade e a acessibilidade, para que o sistema funcione bem em diferentes dispositivos e tamanhos de tela. Foi usado o localStorage para persistência local, simulando um backend sem prejudicar a experiência do usuário. Por fim, as escolhas de design tiveram como foco oferecer uma interface simples, intuitiva, agradável e com feedbacks das ações, sempre pensando na facilidade de uso e na simplicidade da implementação.
 
 ---
 
@@ -119,14 +121,7 @@ Nesta seção, você encontrará todas as informações necessárias para começ
 
 ## Autor
 
-<div style="display: flex;
-    gap: 10px;
-    align-items: center;
-    margin: 15px 0px">
-  <img src="https://github.com/fabriciodangellis.png" width="60" style="border-radius: 50%;" alt="Foto de perfil do GitHub">
-  <a href="https://github.com/FabricioDangellis">Fabrício D'angellis</a>
-</div>
-
+- <a href="https://github.com/FabricioDangellis">Fabrício D'angellis</a>
 
 ---
 
