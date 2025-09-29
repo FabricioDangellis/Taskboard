@@ -11,7 +11,6 @@ export default function TaskDetail() {
   const { tasks, updateTask, updateStatusTask, deleteTask } = useTask();
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  // Busca a task pelo id
   const task = tasks.find((t) => t.id === id);
 
   if (!task) {
@@ -28,7 +27,6 @@ export default function TaskDetail() {
     );
   }
 
-  // Estados locais para edição
   const [titulo, setTitulo] = useState(task.titulo);
   const [descricao, setDescricao] = useState(task.descricao);
   const [prioridade, setPrioridade] = useState(task.prioridade);
@@ -37,7 +35,7 @@ export default function TaskDetail() {
   const handleSave = () => {
     updateTask(task.id, { titulo, descricao, prioridade });
     updateStatusTask(task.id, status);
-    navigate("/"); // volta pra home depois de salvar
+    navigate("/");
   };
 
   const handleDelete = () => {
